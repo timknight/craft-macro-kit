@@ -1,3 +1,12 @@
+{#
+  Returns the state abbrevation given the full state name.
+
+  {% import _self as macro %}
+  {{ macro.abbrStateName("FL") }}
+
+  # => Florida
+#}
+
 {% macro abbrStateName(state) %}
   {% switch state %}
     {% case "Alabama" %}AL
