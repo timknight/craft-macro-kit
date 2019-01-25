@@ -1,3 +1,13 @@
+{#
+  Generates a random string containing uppercase, lowercase, and numbers based on the length that is passed in.
+
+  {% import _self as macro %}
+  {{ macro.randomString(25) }}
+
+  # => 7FiyLQMUPwqxqfOGx9glvG6ut
+#}
+
+
 {%- macro randomString(length) -%}
   {%- set string = [] -%}
   {%- set alpha = 'abcdefghijklmnopqrstuvwxyz' -%}
