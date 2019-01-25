@@ -1,3 +1,14 @@
+{#
+  Generates a date range for two numbers. If the start and end date have a matching month, the month isn't repeated.
+
+  {% import _self as macro %}
+  {{ macro.daterange(entry.eventStart, entry.eventEnd) }}
+
+  # => January 14 — 16, 2019
+  # => January 14 — February 2, 2019
+
+#}
+
 {% macro daterange(start, end) %}
   {% if end %}
     {{ start|date('F j') }}
