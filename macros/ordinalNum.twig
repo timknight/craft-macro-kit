@@ -1,0 +1,23 @@
+{#
+  Given a number, it returns the number along with the ordinal suffix (e.g. st, nd, rd, th)
+
+  {% import _self as macro %}
+  {{ macro.ordinalNum(1) }} #=> 1st
+  {{ macro.ordinalNum(2) }} #=> 2nd
+  {{ macro.ordinalNum(3) }} #=> 3rd
+  {{ macro.ordinalNum(4) }} #=> 4th
+#}
+
+{% macro ordinalNum(number) %}
+  {% set j = number % 10 %}
+  {% set k = number % 100 %}
+  {% if j == 1 and k != 11 %}
+    {{ number }}st
+  {% elseif j == 2 and k != 12 %}
+    {{ number }}nd
+  {% elseif j == 3 and k != 13 %}
+    {{ number }}rd
+  {% else %}
+    {{ number }}th
+  {% endif %}
+{% endmacro %}
