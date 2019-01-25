@@ -1,0 +1,13 @@
+{% macro daterange(start, end) %}
+  {% if end %}
+    {{ start|date('F j') }}
+    &ndash;
+    {% if start|date('F') == end|date('F') %}
+      {{ end|date('j, Y') }}
+    {% else %}
+      {{ end|date('F j, Y') }}
+    {% endif %}
+  {% else %}
+    {{ start|date('F j, Y') }}
+  {% endif %}
+{% endmacro %}

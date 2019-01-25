@@ -1,0 +1,11 @@
+{%- macro randomString(length) -%}
+  {%- set string = [] -%}
+  {%- set alpha = 'abcdefghijklmnopqrstuvwxyz' -%}
+  {%- set numbers = '0123456789' -%}
+  {%- for i in 1..length -%}
+    {%- set randomCharacter = random(alpha ~ alpha|upper ~ numbers) -%}
+    {%- set string = string|merge([randomCharacter]) -%}
+  {%- endfor -%}
+  {%- set string = string|join -%}
+  {{- string -}}
+{%- endmacro -%}

@@ -1,0 +1,6 @@
+{% macro linkif(condition, linkto, block, classes) %}
+  {% set classes = classes|default() %}
+  {%- if condition %}<a href="{{ linkto }}" {% if classes %}class="{{ classes }}"{% endif %}>{% endif -%}
+    {{ block }}
+  {%- if condition %}</a>{% endif -%}
+{% endmacro %}
