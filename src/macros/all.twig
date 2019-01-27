@@ -1,0 +1,203 @@
+{#
+  abbrStateName
+  Returns the state abbrevation given the full state name.
+  @param {string} state (Full US State name)
+#}
+
+{% macro abbrStateName(state) %}
+  {% switch state %}
+    {% case "Alabama" %}AL
+    {% case "Alaska" %}AK
+    {% case "Arizona" %}AZ
+    {% case "Arkansas" %}AR
+    {% case "California" %}CA
+    {% case "Colorado" %}CO
+    {% case "Connecticut" %}CT
+    {% case "Delaware" %}DE
+    {% case "District Of Columbia" %}DC
+    {% case "Florida" %}FL
+    {% case "Georgia" %}GA
+    {% case "Hawaii" %}HI
+    {% case "Idaho" %}ID
+    {% case "Illinois" %}IL
+    {% case "Indiana" %}IN
+    {% case "Iowa" %}IA
+    {% case "Kansas" %}KS
+    {% case "Kentucky" %}KY
+    {% case "Louisiana" %}LA
+    {% case "Maine" %}ME
+    {% case "Maryland" %}MD
+    {% case "Massachusetts" %}MA
+    {% case "Michigan" %}MI
+    {% case "Minnesota" %}MN
+    {% case "Mississippi" %}MS
+    {% case "Missouri" %}MO
+    {% case "Montana" %}MT
+    {% case "Nebraska" %}NE
+    {% case "Nevada" %}NV
+    {% case "New Hampshire" %}NH
+    {% case "New Jersey" %}NJ
+    {% case "New Mexico" %}NM
+    {% case "New York" %}NY
+    {% case "North Carolina" %}NC
+    {% case "North Dakota" %}ND
+    {% case "Ohio" %}OH
+    {% case "Oklahoma" %}OK
+    {% case "Oregon" %}OR
+    {% case "Pennsylvania" %}PA
+    {% case "Rhode Island" %}RI
+    {% case "South Carolina" %}SC
+    {% case "South Dakota" %}SD
+    {% case "Tennessee" %}TN
+    {% case "Texas" %}TX
+    {% case "Utah" %}UT
+    {% case "Vermont" %}VT
+    {% case "Virginia" %}VA
+    {% case "Washington" %}WA
+    {% case "West Virginia" %}WV
+    {% case "Wisconsin" %}WI
+    {% case "Wyoming" %}WY
+    {% default %} {{ state }}
+  {% endswitch %}
+{% endmacro %}
+
+{#
+  daterange
+  Generates a date range for two numbers. If the start and end date have a matching month, the month isn't repeated.
+  @param {datetime} start (the first date)
+  @param {datetime} end (the end date) (optional)
+  @param {string} dash (range separator) (optional)
+#}
+
+{%- macro daterange(start, end, dash) -%}
+  {%- set dash = dash|default(" &ndash; ") -%}
+  {%- if end -%}
+    {{- start|date('F j') -}}
+    {{- dash|raw -}}
+    {%- if start|date('F') == end|date('F') -%}
+      {{- end|date('j, Y') -}}
+    {%- else -%}
+      {{- end|date('F j, Y') -}}
+    {%- endif -%}
+  {%- else -%}
+    {{- start|date('F j, Y') -}}
+  {%- endif -%}
+{%- endmacro -%}
+
+{#
+  fullStateName
+  Returns the state name given the state abbreviation.
+  @param {string} state (Two Level US State abbreviation)
+#}
+
+{% macro fullStateName(state) %}
+  {% switch state %}
+    {% case "AL" %}Alabama
+    {% case "AK" %}Alaska
+    {% case "AZ" %}Arizona
+    {% case "AR" %}Arkansas
+    {% case "CA" %}California
+    {% case "CO" %}Colorado
+    {% case "CT" %}Connecticut
+    {% case "DE" %}Delaware
+    {% case "DC" %}District Of Columbia
+    {% case "FL" %}Florida
+    {% case "GA" %}Georgia
+    {% case "HI" %}Hawaii
+    {% case "ID" %}Idaho
+    {% case "IL" %}Illinois
+    {% case "IN" %}Indiana
+    {% case "IA" %}Iowa
+    {% case "KS" %}Kansas
+    {% case "KY" %}Kentucky
+    {% case "LA" %}Louisiana
+    {% case "ME" %}Maine
+    {% case "MD" %}Maryland
+    {% case "MA" %}Massachusetts
+    {% case "MI" %}Michigan
+    {% case "MN" %}Minnesota
+    {% case "MS" %}Mississippi
+    {% case "MO" %}Missouri
+    {% case "MT" %}Montana
+    {% case "NE" %}Nebraska
+    {% case "NV" %}Nevada
+    {% case "NH" %}New Hampshire
+    {% case "NJ" %}New Jersey
+    {% case "NM" %}New Mexico
+    {% case "NY" %}New York
+    {% case "NC" %}North Carolina
+    {% case "ND" %}North Dakota
+    {% case "OH" %}Ohio
+    {% case "OK" %}Oklahoma
+    {% case "OR" %}Oregon
+    {% case "PA" %}Pennsylvania
+    {% case "RI" %}Rhode Island
+    {% case "SC" %}South Carolina
+    {% case "SD" %}South Dakota
+    {% case "TN" %}Tennessee
+    {% case "TX" %}Texas
+    {% case "UT" %}Utah
+    {% case "VT" %}Vermont
+    {% case "VA" %}Virginia
+    {% case "WA" %}Washington
+    {% case "WV" %}West Virginia
+    {% case "WI" %}Wisconsin
+    {% case "WY" %}Wyoming
+    {% default %} {{ state }}
+  {% endswitch %}
+{% endmacro %}
+
+{#
+  ordinalNum
+  Given a number, it returns the number along with the ordinal suffix (e.g. st, nd, rd, th)
+  Credit: Based on the JavaScript version written by Salman Arshad @ https://stackoverflow.com/questions/13627308/add-st-nd-rd-and-th-ordinal-suffix-to-a-number
+  @param {int} number (Number you wish to return with ordinal suffix)
+#}
+
+{% macro ordinalNum(number) %}
+  {% set j = number % 10 %}
+  {% set k = number % 100 %}
+  {% if j == 1 and k != 11 %}
+    {{ number }}st
+  {% elseif j == 2 and k != 12 %}
+    {{ number }}nd
+  {% elseif j == 3 and k != 13 %}
+    {{ number }}rd
+  {% else %}
+    {{ number }}th
+  {% endif %}
+{% endmacro %}
+
+{#
+  linkToIf
+  Inspired by the Rails URLHelper link_to_if. Wrapped the block with a link if the condition is met.
+  @param {string} condition (The condition to check if the block should be linked)
+  @param {string} linkto (The href of the link)
+  @param {string} block (The block of content that would be output with or within a link)
+  @param {string} classes (Classes to include on the link) (optional)
+#}
+
+{% macro linkToIf(condition, linkto, block, classes) %}
+  {% set classes = classes|default(null) %}
+  {%- if condition %}<a href="{{ linkto }}" {% if classes %}class="{{ classes }}"{% endif %}>{% endif -%}
+    {{ block }}
+  {%- if condition %}</a>{% endif -%}
+{% endmacro %}
+
+{#
+  randomString
+  Generates a random string containing uppercase, lowercase, and numbers based on the length that is passed in.
+  @param {int} length (The amount of characters within the returned string)
+#}
+
+{%- macro randomString(length) -%}
+  {%- set string = [] -%}
+  {%- set alpha = 'abcdefghijklmnopqrstuvwxyz' -%}
+  {%- set numbers = '0123456789' -%}
+  {%- for i in 1..length -%}
+    {%- set randomCharacter = random(alpha ~ alpha|upper ~ numbers) -%}
+    {%- set string = string|merge([randomCharacter]) -%}
+  {%- endfor -%}
+  {%- set string = string|join -%}
+  {{- string -}}
+{%- endmacro -%}
