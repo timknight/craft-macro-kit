@@ -1,5 +1,10 @@
 # Macro Kit Changelog
 
+## 1.0.3 - 2019-01-28
+
+### Fixed
+* Version numbering is hard. I'll get the hang of it.
+
 ## 1.0.2 - 2019-01-28
 
 ### Changed
