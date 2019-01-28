@@ -177,9 +177,10 @@
   @param {string} classes (Classes to include on the link) (optional)
 #}
 
-{% macro linkToIf(condition, linkto, block, classes) %}
+{% macro linkToIf(condition, linkto, block, external, classes) %}
+  {% set external = external|default(false) %}
   {% set classes = classes|default(null) %}
-  {%- if condition %}<a href="{{ linkto }}" {% if classes %}class="{{ classes }}"{% endif %}>{% endif -%}
+  {%- if condition %}<a href="{{ linkto }}" {% if classes %}class="{{ classes }}"{% endif %} {% if external %}target="_blank" rel="noopener"{%endif%}>{% endif -%}
     {{ block }}
   {%- if condition %}</a>{% endif -%}
 {% endmacro %}
