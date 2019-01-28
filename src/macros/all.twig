@@ -62,14 +62,14 @@
 {% endmacro %}
 
 {#
-  daterange
+  dateRange
   Generates a date range for two numbers. If the start and end date have a matching month, the month isn't repeated.
   @param {datetime} start (the first date)
   @param {datetime} end (the end date) (optional)
   @param {string} dash (range separator) (optional)
 #}
 
-{%- macro daterange(start, end, dash) -%}
+{%- macro dateRange(start, end, dash) -%}
   {%- set dash = dash|default(" &ndash; ") -%}
   {%- if end -%}
     {{- start|date('F j') -}}

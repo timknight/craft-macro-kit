@@ -26,8 +26,8 @@ Macro Kit can be used within your templates simply by importing all of the macro
 Or import individual macros into the current namespace.
 
 ```
-{% from "_macrokit/all" import daterange, randomString %}
-{{ daterange(event.start, event.end) }}
+{% from "_macrokit/all" import dateRange, randomString %}
+{{ dateRange(event.start, event.end) }}
 {{ randomString(10) }}
 ```
 
@@ -50,12 +50,12 @@ Given a full US state name this returns the appreviated name of that state.
 # => FL
 ```
 
-### daterange
+### dateRange
 
 Given two dates within the same month, this returns a formatted date range.
 
 ```
-{{ mk.daterange(event.start, event.end)}}
+{{ mk.dateRange(event.start, event.end)}}
 #=> January 14 — 16, 2019
 #=> January 14 — February 2, 2019
 ```
@@ -63,7 +63,7 @@ Given two dates within the same month, this returns a formatted date range.
 Optionally, you can supply a separator to be used in place of the default `&ndash;`.
 
 ```
-{{ mk.daterange(event.start, event.end, " to ")}}
+{{ mk.dateRange(event.start, event.end, " to ")}}
 #=> January 14 to 16, 2019
 ```
 
