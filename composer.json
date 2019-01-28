@@ -1,5 +1,5 @@
 {
-  "name": "timknight/craft-macro-kit",
+  "name": "timknight/craft-macrokit",
   "description": "A collection of Twig macros for Craft CMS",
   "version": "1.0.0",
   "type": "craft-plugin",
@@ -19,7 +19,7 @@
     }
   },
   "extra": {
-    "handle": "macro-kit",
+    "handle": "macrokit",
     "name": "Macro Kit"
   }
 }
