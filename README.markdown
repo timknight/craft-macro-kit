@@ -17,16 +17,26 @@ Coming soon...
 Macro Kit can be used within your templates simply by importing all of the macros into a template.
 
 ```
-{% import "macrokit/all" as mk %}
+{% import "_macrokit/all" as mk %}
 ```
 
 Or import individual macros into the current namespace.
 
 ```
-{% from "macrokit/all" import daterange, randomString %}
+{% from "_macrokit/all" import daterange, randomString %}
 {{ daterange(event.start, event.end) }}
 {{ randomString(10) }}
 ```
+
+You can customize the path to the `all.twig` template (`_macrokit` by default) by editing the plugin’s “Template Path” setting, or creating a `config/macro-kit.php` file with this:
+
+```php
+<?php
+
+return [
+    'templatePath' => '_customTemplatePath',
+];
+``` 
 
 ### abbrStateName
 
