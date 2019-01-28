@@ -8,9 +8,12 @@ This plugin requires Craft CMS 3.0.0 or later.
 
 ## Installation
 
-To install Macro Kit, use one of the following:
+To install Macro Kit, follow these steps:
 
-Coming soon...
+1. Install with Composer using `composer require timknight/craft-macro-kit`
+2. Install the plugin in the Craft Control Panel under `Settings > Plugins`
+
+Macro Kit is also available in the Craft Plugin Store available in the Control Panel.
 
 ## Usage
 
@@ -36,7 +39,7 @@ You can customize the path to the `all.twig` template (`_macrokit` by default) b
 return [
     'templatePath' => '_customTemplatePath',
 ];
-``` 
+```
 
 ### abbrStateName
 
