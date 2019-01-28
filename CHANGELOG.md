@@ -1,5 +1,10 @@
 # Macro Kit Changelog
 
+## 1.0.2 - 2019-01-28
+
+### Changed
+* Corrected dateRange case to be consistent with other macros before active installs happen
+
 ## 1.0.1 - 2019-01-28
 
 ### Added
