@@ -1,12 +1,106 @@
-# Twig Macros for Craft
+# Macro Kit for Craft CMS
 
-I absolutely love the ability to create macros while working in Craft CMS. While you don't necessarily need Craft to work with many of these macros, specific ones may get added in the future. Enjoy!
+Macro Kit provides several functions that can be imported into your front-end templates for use in Craft CMS.
 
-## Current Macros
+## Requirements
 
-* abbrStateName - given a full US state name this returns the appreviated name
-* daterange - give two dates within the same month, this returns a formatted date range
-* fullStateName - given an appreviated US state this returns the full state name
-* link_to_if - given a condition this wraps a block within a link if the condition is met
-* ordinalNum - given a number this returns the number with its ordinal suffix: 1 => 1st
-* randomString - generates a random string of numbers and letters given a specific length
+This plugin requires Craft CMS 3.0.0 or later.
+
+## Installation
+
+To install Macro Kit, use one of the following:
+
+Coming soon...
+
+## Usage
+
+Macro Kit can be used within your templates simply by importing all of the macros into a template.
+
+```
+{% import "macrokit/all" as mk %}
+```
+
+### abbrStateName
+
+Given a full US state name this returns the appreviated name of that state.
+
+```
+{{ mk.abbrStateName("Florida") }}
+# => FL
+```
+
+### daterange
+
+Given two dates within the same month, this returns a formatted date range.
+
+```
+{{ mk.daterange(event.start, event.end)}}
+#=> January 14 — 16, 2019
+#=> January 14 — February 2, 2019
+```
+
+Optionally, you can supply a separator to be used in place of the default `&ndash;`.
+
+```
+{{ mk.daterange(event.start, event.end, " to ")}}
+#=> January 14 to 16, 2019
+```
+
+### fullStateName
+
+Given an appreviated US state this returns the full state name.
+
+```
+{{ mk.fullStateName("FL") }}
+# => Florida
+```
+
+### linkToIf
+
+Given a condition this wraps a block within a link if the condition is met.
+
+```
+{{ mk.linkToIf(profile.body, profile.url, profile.title) }}
+If profile.body has exists and has length #=> <a href="{{ profile.url }}">{{ profile.title }}</a>
+else #=> {{ profile.title }}
+```
+
+Pass in a block variable if you'd like:
+
+```
+{% set image %}
+  <img src="{{ featuredImage.url }}" alt="{{ featuredImage.title }}">
+{% endset %}
+{{ mk.linkToIf(profile.body, profile.url, image) }}
+```
+
+Optionally, you can set if the link is external which can open a new window and set `rel="noopener"`.
+
+```
+{{ mk.linkToIf(profile.body, profile.url, profile.title, true) }}
+```
+
+You can also assign CSS classes to the generated link:
+
+```
+{{ mk.linkToIf(profile.body, profile.url, profile.title, false, "nav-link") }}
+```
+
+### ordinalNum
+
+Given a number this returns the number with its ordinal suffix: 1 => 1st
+
+```
+{{ mk.ordinalNum(1) }} #=> 1st
+{{ mk.ordinalNum(2) }} #=> 2nd
+{{ mk.ordinalNum(3) }} #=> 3rd
+{{ mk.ordinalNum(4) }} #=> 4th
+```
+
+### randomString
+
+Generates a random string of numbers and letters given a specific length.
+
+```
+{{ mk.randomString(25) }} #=> 1V4bnQVMeD0wdixqEz7Imxmbc
+```
