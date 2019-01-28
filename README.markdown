@@ -20,6 +20,14 @@ Macro Kit can be used within your templates simply by importing all of the macro
 {% import "macrokit/all" as mk %}
 ```
 
+Or import individual macros into the current namespace.
+
+```
+{% from "macrokit/all" import daterange, randomString %}
+{{ daterange(event.start, event.end) }}
+{{ randomString(10) }}
+```
+
 ### abbrStateName
 
 Given a full US state name this returns the appreviated name of that state.
