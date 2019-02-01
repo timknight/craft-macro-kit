@@ -1,7 +1,7 @@
 {
   "name": "timknight/craft-macro-kit",
   "description": "A collection of Twig macros for Craft CMS",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "type": "craft-plugin",
   "license": "MIT",
   "authors": [

@@ -202,3 +202,21 @@
   {%- set string = string|join -%}
   {{- string -}}
 {%- endmacro -%}
+
+{#
+  summarize
+  Takes a block of HTML text, strips the tags and trims it to match a given length in characters to act as a summary.
+  @param {string} text (The text to be summarized)
+  @param {int} chars (The length of the summarized text in characters)
+  @param {string} append (String to add to the end of the returned text, e.g '...') (optional)
+#}
+
+{%- macro summarize(text, chars, append) -%}
+  {%- set append = append|default() -%}
+  {%- set text = text|striptags -%}
+  {%- if text|length > chars -%}
+    {{- text[:chars]|trim -}}{%- if append -%}{{ append|raw }}{%- endif -%}
+  {%- else -%}
+    {{- text -}}
+  {%- endif -%}
+{%- endmacro -%}

@@ -125,3 +125,18 @@ Generates a random string of numbers and letters given a specific length.
 ```
 {{ mk.randomString(25) }} #=> 1V4bnQVMeD0wdixqEz7Imxmbc
 ```
+
+### summarize
+
+Takes a block of HTML text, strips the tags and trims it to match a given length in characters to act as a summary.
+
+```
+{{ mk.summarize(entry.body, 255)}}
+```
+
+Optionally, add a string to append at the end of the summary. Supports HTML tags and elements.
+
+```
+{{ mk.summarize(entry.body, 255, "...") }}
+{{ mk.summarize(entry.body, 255, " <strong>&raquo;</strong>") }}
+```

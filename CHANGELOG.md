@@ -1,5 +1,10 @@
 # Macro Kit Changelog
 
+## 1.1.0 - 2019-02-01
+
+### Added
+* Added new `summarize` macro that strips and trims an HTML block to be used as summarized text
+
 ## 1.0.3 - 2019-01-28
 
 ### Fixed
