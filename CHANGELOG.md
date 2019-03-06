@@ -1,5 +1,10 @@
 # Macro Kit Changelog
 
+## 1.2.0 - 2019-03-06
+
+### Added
+* Added new `stripPhone` macro that strips all non-numeric values to return only the numbers.
+
 ## 1.1.0 - 2019-02-01
 
 ### Added

@@ -140,3 +140,13 @@ Optionally, add a string to append at the end of the summary. Supports HTML tags
 {{ mk.summarize(entry.body, 255, "...") }}
 {{ mk.summarize(entry.body, 255, " <strong>&raquo;</strong>") }}
 ```
+
+### stripPhone
+
+Takes a formatted phone number string and strips all non-numeric values to return only the numbers. Perfect for those times when you want a stripped value to use within a phone number link (e.g. `<a href="tel:{{ mk.stripPhone(entry.phone) }}">{{ entry.phone }}</a>`)
+
+```
+{{ mk.stripPhone("(123) 555-6600") }} #=> 1235556600
+{{ mk.stripPhone("1 (800) 555-1212") }} #=> 18005551212
+{{ mk.stripPhone("1-800-555-1212") }} #=> 18005551212
+```

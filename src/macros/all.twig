@@ -220,3 +220,12 @@
     {{- text -}}
   {%- endif -%}
 {%- endmacro -%}
+
+{#
+  stripPhone
+  Takes a formatted phone number string and strips all non-numeric values to return only the numbers.
+  @param {phone} text (The phone number to be stripped)
+#}
+{%- macro stripPhone(phone) -%}
+  {{- phone|replace('/[^0-9+]/', '') -}}
+{%- endmacro -%}
